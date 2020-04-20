@@ -3,7 +3,6 @@ version: '3'
 services: 
     njs1:
         image: node:latest
-        build: ./njs1
         command: sh -c "npm install && npm start"
         environment: 
             - NODE_ENV=development
@@ -16,11 +15,10 @@ services:
     
     njs2: 
         image: node:latest
-        build: ./njs2
         command: sh -c "npm install && npm start"
         environment: 
             - NODE_ENV=development
-            - PORT:8000
+            - PORT=8000
         ports: 
             - 8001:8000
         working_dir: /root/njs2
