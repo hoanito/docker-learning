@@ -1,0 +1,15 @@
+version: '3'
+services:
+  <service_name_1>:
+    build: <path_to_docker_file_of_service>
+    command: <start_command_to_run>
+    environment:
+      - <env_var_1>=<env_val_1>
+      - <env_var_2>=<env_val_2>
+    ports:
+      - '<port_inside_container>:<port_of_host_machine>'
+    working_dir: <path_inside_the_docker_container_where_command_should_run>
+
+  <service_name_2>: ....
+    ....
+    ....

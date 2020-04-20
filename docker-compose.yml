@@ -1,0 +1,51 @@
+version: '3'
+
+services: 
+    njs1:
+        image: node:latest
+        build: ./njs1
+        command: sh -c "npm install && npm start"
+        environment: 
+            - NODE_ENV=development
+            - PORT=7000
+        ports: 
+            - 7001:7000
+        working_dir: /root/njs1
+        volumes: 
+            - ./njs1:/root/njs1:cached
+    
+    njs2: 
+        image: node:latest
+        build: ./njs2
+        command: sh -c "npm install && npm start"
+        environment: 
+            - NODE_ENV=development
+            - PORT:8000
+        ports: 
+            - 8001:8000
+        working_dir: /root/njs2
+        volumes: 
+            - ./njs2:/root/njs2:cached
+
+    py1:
+        image: python:3-stretch
+        command: sh -c "pip install -r requirements.txt && python -m server"
+        environment:
+            - PORT=9000
+            - FLASK_ENV=development
+        ports:
+            - '9000:9000'
+        working_dir: /root/py1
+        volumes:
+            - ./py1:/root/py1:cached # <--- This will map ./py1 to /root/py1 inside the container.
+    
+    go1:
+        image: golang:1.12-alpine
+        command: sh -c "go run ."
+        environment:
+            - PORT=5000
+        ports:
+            - '5000:5000'
+        working_dir: /root/go1
+        volumes:
+            - ./go1:/root/go1:cached 

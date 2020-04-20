@@ -1,0 +1,30 @@
+Start all services
+This will start all services in the docker-compose file and detach from the terminal. So your services can run in background.
+docker-compose start
+
+Stop all services
+docker-compose stop
+
+Launch a specific service
+This will only launch njs1 from the list of services in the docker-compose.yml
+docker-compose up njs1
+
+You can use similar commands to stop, start induvidual services as well.
+restart a single service
+docker-compose restart njs1
+
+
+logs from specific service
+This will show logs of only njs1 and also watch for more logs
+docker-compose logs -f njs1
+
+ssh into a particular service container
+docker-compose exec njs1 bash
+
+
+
+To remove all docker containers:
+docker rm $(docker ps -a -q) -f
+
+To remove all docker images:
+docker rmi $(docker images) -f
