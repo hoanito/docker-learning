@@ -1,18 +1,38 @@
-# Blog: Docker for local development environment Example
+-- kops
+create R53 zone
+    ID=$(uuidgen) && aws route53 create-hosted-zone --name bitcorn.site --caller-reference $ID | jq .DelegationSet.NameServers
 
-This repo contains the example code for the blog post:
+create S3 bucket
+    export KSS=s3://kube-io-234212
+    aws s3 mb s3://kube-io-234212
 
-**🐳 Simplified guide to using Docker for local development environment**
+upload local publiic key to cluster nodes
+    kops create secret --name bitcorn.site sshpublickey admin -i ~/.ssh/id_rsa.pub --state s3://kube-io-234212
 
-_The blog link :_
+Create cluster on aws
+    kops create cluster --name  c1.bitcorn.site --zones us-east-2b --state s3://kube-io-234212 --yes --dns-zone bitcorn.site --node-count 2 --node-size t2.micro --master-size t2.micro --yes 
+    kops update cluster bitcorn.site  --state s3://kube-io-234212 --yes
 
-[https://blog.atulr.com/docker-local-environment/](https://blog.atulr.com/docker-local-environment/)
+Update Kube Cluster config
+    kops edit cluster c1.bitcorn.site --state ${KSS}
+    kops update cluster c1.bitcorn.site --state ${KSS} --yes
 
-To run the example:
+Update Kube nodes config
+     kops edit ig nodes --state ${KSS}
 
-- `git clone https://github.com/master-atul/blog-docker-dev-environment-example`
-- `docker-compose up`
+Delete cluster
+     kops delete cluster  --state s3://kube-io-234212 --name  bitcorn.site
 
-Details about each service and how to run them is present in the induvidual services directories.
+Get cluster
+     kops get cluster --state ${KSS}
 
-Hope this helps someone 🎉🌮
+
+Test run an image on cluster
+    kubectl create deployment test-kube --image  k8s.gcr.io/echoserver:1.4
+    kubectl run test-kube --image k8s.gcr.io/echoserver:1.4 --port 8080  
+
+    //expose or nat the container port randomly
+    kubectl expose deployment test-kube --type=NodePort --port 8080
+    kubectl expose pod test-kube --type=NodePort --port 8080
+    //manual port forward optional
+    kubectl port-forward <pod> 8080

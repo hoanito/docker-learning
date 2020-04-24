@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: njs2
+    labels:
+        app: njs2
+spec:
+    containers:
+    - name: njs2
+      image: node
+      ports:
+      - containerPort: 8000 
