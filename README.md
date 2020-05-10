@@ -26,7 +26,6 @@
 ### Get cluster
      kops get cluster # state ${KSS}
 
-=======================================================================================
 
 # kubectl
 ### Test run an image on cluster
@@ -55,7 +54,7 @@
 ### get log of running start up command in container
     kubectl logs -p [pod name]
 
-=======================================================================================
+
 
 # helm
 
@@ -78,7 +77,7 @@
 
 ### install nginx-ingress
     hell install nginx-ingress stable/nginx-ingress
-=======================================================================================
+
 
 # gcloud 
 
@@ -97,7 +96,7 @@
 ### Create Persistent compute disk
     gcloud compute disks create # type=pd-standard # size=1GB [name]
 
-### create GKE cluster
+### Create GKE cluster
     gcloud container clusters create cluster-1 # num-nodes 2 # machine-type g1-small
 
 ### Create docker image w gcloud
@@ -109,10 +108,10 @@
 
 
 
-# -docker
+# docker
 
-### build local docker image
+### Build local docker image
     docker build # tag snappass:1.0 .
 
-### run container for local built image
+### Run container for local built image
     docker run # publish 5000:5000 -e REDIS_HOST='192.168.1.75' snappass:1.0
