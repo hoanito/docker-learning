@@ -52,9 +52,15 @@
     livenessProbes: check whether container is running, if not restart
     readiness: check if pod is ready to serve request, if not remove pod IP from service
 
+# get log of running start up command in container
+    kubectl logs -p [pod name]
+
 =======================================================================================
 
 --helm
+
+# add helm repo
+    helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
 # Get helm charts
     helm ls --all
@@ -70,9 +76,19 @@
 
     helm package ./hello-world
 
+# install nginx-ingress
+    hell install nginx-ingress stable/nginx-ingress
 =======================================================================================
 
 --gcloud 
+
+# login
+    gcloud auth login
+
+# set up project
+    gcloud projects list
+    gcloud config set project $GCP_PROJECT_ID
+    gcloud config set compute/zone us-central1-a
 
 # Generate kubectl credential for local 
     gcloud container clusters list
@@ -80,3 +96,23 @@
 
 # Create Persistent compute disk
     gcloud compute disks create --type=pd-standard --size=1GB [name]
+
+# create GKE cluster
+    gcloud container clusters create cluster-1 --num-nodes 2 --machine-type g1-small
+
+# Create docker image w gcloud
+    gcloud config set compute/zone us-central1-f
+
+    gcloud builds submit --tag us.gcr.io/$GCP_PROJECT_ID/snappass-nginx:$SNAPPASS_NGINX_GIT_SHA .
+
+    gcloud container images list --repository us.gcr.io/$GCP_PROJECT_ID
+
+
+
+---docker
+
+# build local docker image
+    docker build --tag snappass:1.0 .
+
+# run container for local built image
+    docker run --publish 5000:5000 -e REDIS_HOST='192.168.1.75' snappass:1.0

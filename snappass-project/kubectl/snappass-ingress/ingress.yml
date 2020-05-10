@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: ingress-sv
+    annotations:
+        kubernetes.io/ingress.class: nginx
+    namespace: snappass
+spec:
+    rules:
+    -
+        host: snappass.bitcorn.site
+        http:
+            paths:
+            -
+                backend:
+                    serviceName: snappass-main
+                    servicePort: 80
