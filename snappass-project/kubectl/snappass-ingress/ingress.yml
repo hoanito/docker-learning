@@ -12,6 +12,12 @@ spec:
         http:
             paths:
             -
+                path: /
                 backend:
                     serviceName: snappass-main
                     servicePort: 80
+            -
+                path: /jenkins
+                backend:
+                    serviceName: jenkins.jenkins
+                    servicePort: 8080 

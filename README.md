@@ -106,6 +106,11 @@
 
     gcloud container images list --repository us.gcr.io/$GCP_PROJECT_ID
 
+# List node pool in cluster
+    gcloud container node-pools list --cluster snappass-cluster
+
+# Resize node pool
+    gcloud container clusters resize snappass-cluster --node-pool default-pool --num-nodes
 
 
 # docker
@@ -115,3 +120,10 @@
 
 ### Run container for local built image
     docker run --publish 5000:5000 -e REDIS_HOST='192.168.1.75' snappass:1.0
+
+### Push image to gcr
+    gcloud auth configure-docker
+    docker tag 016bc1f182f5  us.gcr.io/kuber-276115/docker-jenkin-slave:1.0
+    docker push us.gcr.io/kuber-276115/docker-jenkin-slave
+
+    DyA5LTXGud
