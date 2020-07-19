@@ -57,7 +57,6 @@
 
 
 # helm
-
 ### add helm repo
     helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
@@ -68,15 +67,15 @@
 
 ### Update helm chart
     helm upgrade hello-world ./hello-world
-
     helm rollback hello-world 1
-
     helm delete --purge hello-world
-
     helm package ./hello-world
 
 ### install nginx-ingress
     hell install nginx-ingress stable/nginx-ingress
+    
+### get yaml output for helm deployment
+    helm template nginx stable/nginx-ingress
 
 
 # gcloud 
@@ -97,7 +96,7 @@
     gcloud compute disks create --type=pd-standard --size=1GB [name]
 
 ### Create GKE cluster
-    gcloud container clusters create cluster-1 --num-nodes 2 --machine-type g1-small
+    gcloud container clusters create cluster-1 --num-nodes 2 --machine-type g1-small  --node-locations us-central1-a,us-central1-b,us-central1-f --num-nodes 2 --enable-autoscaling --min-nodes 1 --max-nodes 4
     
 ### List node pool in cluster
     gcloud container node-pools list --cluster snappass-cluster
