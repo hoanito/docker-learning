@@ -1,4 +1,5 @@
 #  kops
+
 ### create R53 zone
     ID=$(uuidgen) && aws route53 create-hosted-zone --name bitcorn.site --caller-reference $ID | jq .DelegationSet.NameServers
 
@@ -28,6 +29,7 @@
 
 
 # kubectl
+
 ### Test run an image on cluster
     kubectl create deployment test-kube --image  k8s.gcr.io/echoserver:1.4
     kubectl run test-kube --image k8s.gcr.io/echoserver:1.4 --port 8080  
@@ -55,8 +57,8 @@
     kubectl logs -p [pod name]
 
 
-
 # helm
+
 ### add helm repo
     helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
@@ -75,8 +77,7 @@
     hell install nginx-ingress stable/nginx-ingress
     
 ### get yaml output for helm deployment
-    helm template nginx stable/nginx-ingress
-
+    helm template nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true
 
 # gcloud 
 
