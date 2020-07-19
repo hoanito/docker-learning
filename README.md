@@ -98,20 +98,16 @@
 
 ### Create GKE cluster
     gcloud container clusters create cluster-1 --num-nodes 2 --machine-type g1-small
-
-### Create docker image w gcloud
-    gcloud config set compute/zone us-central1-f
-
-    gcloud builds submit --tag us.gcr.io/$GCP_PROJECT_ID/snappass-nginx:$SNAPPASS_NGINX_GIT_SHA .
-
-    gcloud container images list --repository us.gcr.io/$GCP_PROJECT_ID
-
-# List node pool in cluster
+    
+### List node pool in cluster
     gcloud container node-pools list --cluster snappass-cluster
 
-# Resize node pool
+### Resize node pool
     gcloud container clusters resize snappass-cluster --node-pool default-pool --num-nodes
-
+    
+### Create docker image w gcloud
+    gcloud builds submit --tag us.gcr.io/$GCP_PROJECT_ID/snappass-nginx:$SNAPPASS_NGINX_GIT_SHA .
+    gcloud container images list --repository us.gcr.io/$GCP_PROJECT_ID
 
 # docker
 
@@ -125,5 +121,3 @@
     gcloud auth configure-docker
     docker tag 016bc1f182f5  us.gcr.io/kuber-276115/docker-jenkin-slave:1.0
     docker push us.gcr.io/kuber-276115/docker-jenkin-slave
-
-    DyA5LTXGud
