@@ -80,6 +80,20 @@
     helm template nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true
 
 # gcloud 
+### Cluster setup
+  export PROJECT_ID=`gcloud config get-value project` && \
+  export M_TYPE=n1-standard-2 && \
+  export ZONE=us-central-a && \
+  export CLUSTER_NAME=${PROJECT_ID}-${RANDOM} && \
+  gcloud services enable container.googleapis.com && \
+  gcloud container clusters create $CLUSTER_NAME \
+  --cluster-version latest \
+  --machine-type=$M_TYPE \
+  --num-nodes 4 \
+  --zone $ZONE \
+  --project $PROJECT_ID \
+  --enable-autoscaling --min-nodes 1 --max-nodes 4  \
+  --enable-master-authorized-networks --master-authorized-networks [authorized cidr]
 
 ### login
     gcloud auth login
