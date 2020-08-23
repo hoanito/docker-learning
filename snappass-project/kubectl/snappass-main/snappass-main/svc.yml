@@ -4,7 +4,7 @@ metadata:
     name: snappass-main
     namespace: snappass
 spec:
-    type: ClusterIP
+    type: LoadBalancer
     ports:
         -
             port: 80
