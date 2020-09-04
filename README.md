@@ -111,7 +111,7 @@
     gcloud compute disks create --type=pd-standard --size=1GB [name]
 
 ### Create GKE cluster
-    gcloud container clusters create cluster-1 --num-nodes 2 --machine-type g1-small  --node-locations us-central1-a,us-central1-b,us-central1-f --num-nodes 2 --enable-autoscaling --min-nodes 1 --max-nodes 4  --enable-master-authorized-networks --master-authorized-networks [authorized cidr]
+    gcloud container clusters create cluster-1 --num-nodes 4 --machine-type e2-medium  --node-locations  us-central1-f --num-nodes 4 --enable-autoscaling --min-nodes 1 --max-nodes 4 --region us-central1-f --enable-master-authorized-networks --master-authorized-networks [IP]/32
     
 ### List node pool in cluster
     gcloud container node-pools list --cluster snappass-cluster
