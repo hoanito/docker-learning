@@ -16,7 +16,7 @@ spec:
         version: v1.0.0
     spec:
       containers:
-        - name: snappass-v2
+        - name: snappass-v1
           image: us.gcr.io/kuber-276115/snappass:1.0
           imagePullPolicy: Always
           env:
@@ -26,8 +26,6 @@ spec:
             - containerPort: 5000
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
-      previewService: snappass-v2-deploy # Reference to a service
-      activeService: snappass-v1-deploy # Reference to a service
       autoPromotionEnabled: false
 ---
 apiVersion: v1
