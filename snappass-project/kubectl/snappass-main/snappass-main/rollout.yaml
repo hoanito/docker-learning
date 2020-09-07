@@ -2,18 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: snappass-v2-deploy
+  namespace: snappass
 spec:
   replicas: 10
   revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: snappass-main
-      version: v2.0.0
   template:
     metadata:
       labels:
         app: snappass-main
-        version: v2.0.0
     spec:
       containers:
         - name: snappass-v2
@@ -38,17 +37,3 @@ spec:
         - setWeight: 40
         - pause:
             duration: 10s
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: snappass-v2-deploy
-spec:
-  ports:
-    - port: 5000
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app: snappass-main
-    version: v2.0.0
