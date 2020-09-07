@@ -19,6 +19,9 @@ spec:
         - name: snappass-v2
           image: us.gcr.io/kuber-276115/snappass:v2.0.0
           imagePullPolicy: Always
+          env:
+            - name: REDIS_HOST
+              value: snappass-redis
           ports:
             - containerPort: 5000
   strategy:
