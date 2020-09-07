@@ -22,11 +22,12 @@ spec:
           ports:
             - containerPort: 5000
   strategy:
-    canaryService: snappass-v2-deploy
-    stableService: snappass-main
     canary:
+      canaryService: snappass-v2-deploy
+      stableService: snappass-main
+      maxSurge: 20%
       steps:
-        - setWeight: 0
+        - setWeight: 20
         - pause: {}
         - setWeight: 20
         - pause: { duration: 10s }
