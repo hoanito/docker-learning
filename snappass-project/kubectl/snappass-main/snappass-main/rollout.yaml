@@ -27,13 +27,13 @@ spec:
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
       previewService: snappass-v2-deploy # Reference to a service
-      activeService: snappass-v2-deploy # Reference to a service
+      activeService: snappass-v1-deploy # Reference to a service
       autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: snappass-v2-deploy
+  name: snappass-v1-deploy
 spec:
   ports:
     - port: 5000
