@@ -1,27 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    labels:
-        name: snappass-main
+  labels:
     name: snappass-main
-    namespace: snappass
+  name: snappass-main
+  namespace: snappass
 spec:
-    replicas: 2
-    
-    selector:
-        matchLabels:
-          app: snappass-main
-    template:
-        metadata:
-            labels:
-                app: snappass-main
-        spec:
-            containers:
-                -
-                    name: snappass-main
-                    image: us.gcr.io/kuber-276115/snappass:1.0
-                    env:
-                        - name: REDIS_HOST
-                          value: snappass-redis
-                    ports:
-                        - containerPort: 5000
+  replicas: 10
+
+  selector:
+    matchLabels:
+      app: snappass-main
+  template:
+    metadata:
+      labels:
+        app: snappass-main
+    spec:
+      containers:
+        - name: snappass-main
+          image: us.gcr.io/kuber-276115/snappass:1.0
+          env:
+            - name: REDIS_HOST
+              value: snappass-redis
+          ports:
+            - containerPort: 5000

@@ -1,17 +1,21 @@
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 .break-word {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .margin-bottom-10 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 input[readonly].readonly-text {
-    background-color: #fff;
-    cursor: text;
+  background-color: #fff;
+  cursor: text;
+}
+
+body {
+  background-color: rgb(246, 253, 184);
 }
