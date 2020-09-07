@@ -26,14 +26,14 @@ spec:
             - containerPort: 5000
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
-      previewService: snappass-preview-service # Reference to a service
-      activeService: snappass-active-service # Reference to a service
+      previewService: snappass-blue-service # Reference to a service
+      activeService: snappass-green-service # Reference to a service
       autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: snappass-preview-service
+  name: snappass-blue-service
 spec:
   ports:
     - port: 80

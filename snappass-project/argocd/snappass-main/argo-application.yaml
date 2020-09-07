@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/hhoang219/docker-learning.git
     targetRevision: HEAD
-    path: snappass-project/kubectl
+    path: snappass-project/kubernetes
     directory:
       recurse: true
   destination:
