@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: snappass-main
+        # version: v2.0.0
     spec:
       containers:
         - name: snappass-v2
@@ -22,8 +23,8 @@ spec:
             - containerPort: 5000
   strategy:
     canary:
-      canaryService: snappass-v2-deploy
-      stableService: snappass-main
+      # canaryService: snappass-v2-deploy
+      # stableService: snappass-main
       maxSurge: "20%"
       steps:
         - setWeight: 20
@@ -37,3 +38,17 @@ spec:
         - setWeight: 40
         - pause:
             duration: 10s
+---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: snappass-v2-deploy
+# spec:
+#   ports:
+#     - port: 5000
+#       targetPort: http
+#       protocol: TCP
+#       name: http
+#   selector:
+#     app: snappass-main
+#     version: v2.0.0
