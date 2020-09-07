@@ -16,8 +16,8 @@ spec:
         version: v1.0.0
     spec:
       containers:
-        - name: snappass-v1
-          image: us.gcr.io/kuber-276115/snappass:1.0
+        - name: snappass-v2
+          image: us.gcr.io/kuber-276115/snappass:v2.0.0
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
@@ -26,18 +26,19 @@ spec:
             - containerPort: 5000
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
+      previewService: snappass-preview-service # Reference to a service
+      activeService: snappass-active-service # Reference to a service
       autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: snappass-v1-deploy
+  name: snappass-preview-service
 spec:
   ports:
-    - port: 5000
-      targetPort: http
+    - port: 80
+      targetPort: 5000
       protocol: TCP
-      name: http
   selector:
     app: snappass-main
-    version: v1.0.0
+    version: v2.0.0
