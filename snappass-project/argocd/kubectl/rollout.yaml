@@ -29,27 +29,27 @@ spec:
   #     previewService: snappass-blue-service # Reference to a service
   #     activeService: snappass-main # Reference to a service
   #     autoPromotionEnabled: false
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: snappass-blue-service
-spec:
-  ports:
-    - port: 80
-      targetPort: 5000
-      protocol: TCP
-  selector:
-    app: snappass-main
-    version: blue
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: snappass-main
-  ports:
-    - port: 80
-      targetPort: 5000
-      protocol: TCP
-  selector:
-    app: snappass-main
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: snappass-blue-service
+# spec:
+#   ports:
+#     - port: 80
+#       targetPort: 5000
+#       protocol: TCP
+#   selector:
+#     app: snappass-main
+#     version: blue
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: snappass-main
+#   ports:
+#     - port: 80
+#       targetPort: 5000
+#       protocol: TCP
+#   selector:
+#     app: snappass-main
