@@ -6,7 +6,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /*
+          - path: /app
             backend:
               serviceName: snappass-main
               servicePort: 80
