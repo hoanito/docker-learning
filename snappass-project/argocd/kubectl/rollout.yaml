@@ -13,22 +13,22 @@ spec:
     metadata:
       labels:
         app: snappass-main
-        version: v2.0.0
+        version: v1.0.0
     spec:
       containers:
         - name: snappass-v2
-          image: us.gcr.io/kuber-276115/snappass:v2.0.0
+          image: us.gcr.io/kuber-276115/snappass:1.0
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
               value: snappass-redis
           ports:
             - containerPort: 5000
-  strategy:
-    blueGreen: # A new field for the Blue Green strategy options
-      previewService: snappass-blue-service # Reference to a service
-      activeService: snappass-main # Reference to a service
-      autoPromotionEnabled: false
+  # strategy:
+  #   blueGreen: # A new field for the Blue Green strategy options
+  #     previewService: snappass-blue-service # Reference to a service
+  #     activeService: snappass-main # Reference to a service
+  #     autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
@@ -41,4 +41,15 @@ spec:
       protocol: TCP
   selector:
     app: snappass-main
-    version: v2.0.0
+    version: blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snappass-main
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: snappass-main
