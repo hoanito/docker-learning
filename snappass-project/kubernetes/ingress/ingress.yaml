@@ -1,17 +1,12 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
           - path: /
-            pathType: Prefix
             backend:
-              service:
-                name: snappass-main
-                port:
-                  number: 80
+              serviceName: snappass-main
+              servicePort: 80
