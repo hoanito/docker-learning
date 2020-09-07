@@ -24,7 +24,7 @@ spec:
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
       previewService: snappass-v2-deploy # Reference to a service
-      activeService: msnappass-main # Reference to a service
+      activeService: snappass-main # Reference to a service
 ---
 apiVersion: v1
 kind: Service
