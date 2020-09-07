@@ -4,7 +4,7 @@ metadata:
   name: snappass-main
   namespace: snappass
 spec:
-  # type: LoadBalancer
+  type: NodePort
   ports:
     - port: 80
       targetPort: 5000
