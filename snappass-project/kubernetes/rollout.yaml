@@ -4,7 +4,7 @@ metadata:
   name: snappass-v2-deploy
   namespace: snappass
 spec:
-  replicas: 10
+  replicas: 3
   revisionHistoryLimit: 2
   selector:
     matchLabels:
