@@ -25,16 +25,19 @@ spec:
     canary:
       canaryService: snappass-v2-deploy
       stableService: snappass-main
-      maxSurge: 20%
+      maxSurge: "20%"
       steps:
         - setWeight: 20
         - pause: {}
         - setWeight: 20
-        - pause: { duration: 10s }
+        - pause:
+            duration: 10s
         - setWeight: 40
-        - pause: { duration: 10s }
+        - pause:
+            duration: 10s
         - setWeight: 40
-        - pause: { duration: 10s }
+        - pause:
+            duration: 10s
 ---
 apiVersion: v1
 kind: Service
