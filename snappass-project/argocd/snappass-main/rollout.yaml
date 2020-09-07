@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: snappass-main
-        version: v2.0.0
+        version: v1.0.0
     spec:
       containers:
         - name: snappass-v2
@@ -42,4 +42,4 @@ spec:
       name: http
   selector:
     app: snappass-main
-    version: v2.0.0
+    version: v1.0.0

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        name: snappass-redis
+    name: snappass-redis
+    namespace: snappass
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: snappass-redis
+    template:
+        metadata:
+            labels:
+                app: snappass-redis
+        spec:
+            containers:
+                -
+                    name: snappass-redis
+                    image: redis
+                    ports: 
+                        - containerPort: 6379

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: example-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/hhoang219/docker-learning.git
+    targetRevision: HEAD
+    path: snappass-project/argocd
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: snappass
+  syncPolicy:
+    automated:
+      # delete if resource does not exist in desired state
+      prune: false
+      selfHeal: false
