@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: snappass-v2
-          image: docker pull us.gcr.io/kuber-276115/snappass:v2.0.0
+          image: us.gcr.io/kuber-276115/snappass:v2.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
