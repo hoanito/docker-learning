@@ -8,5 +8,5 @@ spec:
         paths:
           - path: /*
             backend:
-              serviceName: snappass-green
+              serviceName: snappass-green-service
               servicePort: 80

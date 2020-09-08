@@ -27,13 +27,13 @@ spec:
   strategy:
     blueGreen: # A new field for the Blue Green strategy options
       previewService: snappass-blue-service # Reference to a service
-      activeService: snappass-main # Reference to a service
+      activeService: snappass-green-service # Reference to a service
       autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: snappass-main
+  name: snappass-green-service
   namespace: snappass
 spec:
   type: NodePort
