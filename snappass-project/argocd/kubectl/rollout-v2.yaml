@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: snappass-rollout
+  namespace: snappass
+spec:
+  replicas: 3
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: snappass-app
+  template:
+    metadata:
+      labels:
+        app: snappass-app
+        version: v2.0.0
+    spec:
+      containers:
+        - name: snappass-v2
+          image: us.gcr.io/kuber-276115/snappass:v2.0.0
+          imagePullPolicy: Always
+          env:
+            - name: REDIS_HOST
+              value: snappass-redis
+          ports:
+            - containerPort: 5000
+  strategy:
+    blueGreen: # A new field for the Blue Green strategy options
+      previewService: snappass-blue-service # Reference to a service
+      activeService: snappass-green-service # Reference to a service
+      autoPromotionEnabled: false # Wait for confirmation before deploy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snappass-green-service
+  namespace: snappass
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: snappass-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snappass-blue-service
+  namespace: snappass
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: snappass-app
