@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snappass-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Git repo URI
+    repoURL: https://github.com/hhoang219/docker-learning.git
+    # Select branch to deploy
+    targetRevision: learnkube
+    # Path to kubernete yaml folder
+    path: snappass-project/argocd-istio-canary/kubectl
+    # Apply kubernetes yaml files in child folders
+    directory:
+      recurse: true
+  destination:
+    # Which cluster to deploy. kubernetes.default.svc is the cluster where ArgoCD is deployed
+    server: https://kubernetes.default.svc
+    # Namespace for your application
+    namespace: snappass
+  syncPolicy:
+    automated:
+      # delete if resource does not exist in desired state
+      prune: false
+      selfHeal: false

@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: frontend-gateway
+spec:
+  selector:
+    istio: ingressgateway # The label must match with your Istio Ingress Gateway label
+    app: istio-ingressgateway # The label must match with your Istio Ingress Gateway label
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - *
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: snappass-virtual-service
+spec:
+  gateways:
+    - frontend-gateway
+  hosts:
+    - *
+  http:
+    - name: snappass-route
+      route:
+        - destination:
+            host: snappass-stable-svc
+          weight: 100
+        - destination:
+            host: snappass-canary-svc
+          weight: 0
