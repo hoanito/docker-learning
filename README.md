@@ -141,6 +141,7 @@
     gcloud container clusters create cluster-1 --num-nodes 4 --machine-type e2-medium  \
     --node-locations  us-central1-f --num-nodes 4 --enable-autoscaling --min-nodes 1 \
     --max-nodes 4 --region us-central1-f --enable-master-authorized-networks \
+    --cluster-version 1.16.13-gke.400 \
     --master-authorized-networks [IP]/32
 
 ### List node pool in cluster
