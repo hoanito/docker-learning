@@ -26,8 +26,8 @@ spec:
     - name: snappass-route
       route:
         - destination:
-            host: snappass-stable-svc
+            host: snappass-stable-service
           weight: 100
         - destination:
-            host: snappass-canary-svc
+            host: snappass-canary-service
           weight: 0
