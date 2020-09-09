@@ -30,8 +30,8 @@ spec:
         - setWeight: 10
         - pause:
             duration: 10m
-      canaryService: snappass-stable-service # required
-      stableService: snappass-canary-service # required
+      canaryService: snappass-canary-service # required
+      stableService: snappass-stable-service # required
       trafficRouting:
         istio:
           virtualService:
