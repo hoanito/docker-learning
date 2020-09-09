@@ -37,7 +37,7 @@ spec:
           virtualService:
             name: snappass-virtual-service # required
             routes:
-              - primary # At least one route is required
+              - snappass-route # At least one route is required
 ---
 apiVersion: v1
 kind: Service
