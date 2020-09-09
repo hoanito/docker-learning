@@ -27,17 +27,17 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 10
-      - pause:
-          duration: 10m
+        - setWeight: 10
+        - pause:
+            duration: 10m
       canaryService: snappass-stable-svc # required
-      stableService: snappass-blue-service  # required
+      stableService: snappass-blue-service # required
       trafficRouting:
         istio:
-          virtualService: 
-            name: rollout-vsvc  # required
+          virtualService:
+            name: rollout-vsvc # required
             routes:
-          - primary # At least one route is required
+              - primary # At least one route is required
 ---
 apiVersion: v1
 kind: Service
