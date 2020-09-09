@@ -30,8 +30,8 @@ spec:
         - setWeight: 10 # First step of deployment is shifting 10% of traffic to Canary service
         - pause:
             duration: 10m
-      canaryService: snappass-stable-service # required. This service will forward traffic to v1.0 pods
-      stableService: snappass-canary-service # required. This service will forward traffic to v2.0 pods
+      canaryService: snappass-canary-service # required. This service will forward traffic to v1.0 pods
+      stableService: snappass-stable-service # required. This service will forward traffic to v2.0 pods
       # Integration with Istio vertual service
       trafficRouting:
         istio:
