@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: snappass-v2
-          image: us.gcr.io/kuber-276115/snappass:v1.0.0
+          image: us.gcr.io/kuber-276115/snappass:1.0 # This image contain version 1 of Snappass
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
@@ -27,17 +27,18 @@ spec:
   strategy:
     canary:
       steps:
-        - setWeight: 10
+        - setWeight: 10 # First step of deployment is shifting 10% of traffic to Canary service
         - pause:
             duration: 10m
-      canaryService: snappass-stable-service # required
-      stableService: snappass-canary-service # required
+      canaryService: snappass-stable-service # required. This service will forward traffic to v1.0 pods
+      stableService: snappass-canary-service # required. This service will forward traffic to v2.0 pods
+      # Integration with Istio vertual service
       trafficRouting:
         istio:
           virtualService:
-            name: snappass-virtual-service # required
+            name: snappass-virtual-service # Virtual Service name required
             routes:
-              - snappass-route # At least one route is required
+              - snappass-route # At least one route in virtual service is required. This is the route for Snappass traffic
 ---
 apiVersion: v1
 kind: Service
