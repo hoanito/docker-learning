@@ -13,11 +13,11 @@ spec:
     metadata:
       labels:
         app: snappass-app
-        version: v1.0.0
+        version: v2.0.0
     spec:
       containers:
         - name: snappass-v2
-          image: us.gcr.io/kuber-276115/snappass:1.0
+          image: us.gcr.io/kuber-276115/snappass:v2.0.0
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
