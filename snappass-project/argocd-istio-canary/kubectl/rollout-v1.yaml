@@ -31,7 +31,7 @@ spec:
         - pause:
             duration: 10m
       canaryService: snappass-stable-service # required
-      stableService: snappass-blue-service # required
+      stableService: snappass-canary-service # required
       trafficRouting:
         istio:
           virtualService:
@@ -55,7 +55,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: snappass-blue-service
+  name: snappass-canary-service
   namespace: snappass
 spec:
   # type: NodePort
