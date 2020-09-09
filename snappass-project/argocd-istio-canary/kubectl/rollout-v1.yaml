@@ -35,7 +35,7 @@ spec:
       trafficRouting:
         istio:
           virtualService:
-            name: rollout-vsvc # required
+            name: snappass-virtual-service # required
             routes:
               - primary # At least one route is required
 ---
