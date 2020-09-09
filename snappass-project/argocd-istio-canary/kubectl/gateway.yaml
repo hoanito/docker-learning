@@ -4,15 +4,14 @@ metadata:
   name: frontend-gateway
 spec:
   selector:
-    istio: ingressgateway # The label must match with your Istio Ingress Gateway label
-    app: istio-ingressgateway # The label must match with your Istio Ingress Gateway label
+    istio: ingressgateway # use Istio default gateway implementation
   servers:
     - port:
         number: 80
         name: http
         protocol: HTTP
       hosts:
-      - "*"
+        - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -22,7 +21,7 @@ spec:
   gateways:
     - frontend-gateway
   hosts:
-    - *
+    - "*"
   http:
     - name: snappass-route
       route:
