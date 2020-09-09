@@ -27,7 +27,7 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 5
+      - setWeight: 10
       - pause:
           duration: 10m
       canaryService: snappass-stable-svc # required
