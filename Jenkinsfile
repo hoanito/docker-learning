@@ -33,7 +33,7 @@ spec:
       steps {
         container(name: 'kaniko') {
           sh '''
-            /kaniko/executor  --skip-tls-verify --dockerfile=`pwd`/docker-learning/beginner-project/njs2/Dockerfile --context=`pwd` --destination=gcr.io/swagoverflow/njs2:latest
+            /kaniko/executor  --skip-tls-verify --dockerfile=`pwd`/beginner-project/njs2/Dockerfile --context=`pwd` --destination=gcr.io/swagoverflow/njs2:latest
             '''
         }
 
