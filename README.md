@@ -72,33 +72,6 @@
 
     kubectl logs -p [pod name]
 
-# helm
-
-### add helm repo
-
-    helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-
-### Get helm charts
-
-    helm ls --all
-
-### Deploy helm chart
-
-### Update helm chart
-
-    helm upgrade hello-world ./hello-world
-    helm rollback hello-world 1
-    helm delete --purge hello-world
-    helm package ./hello-world
-
-### install nginx-ingress
-
-    hell install nginx-ingress stable/nginx-ingress
-
-### get yaml output for helm deployment
-
-    helm template nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true
-
 # gcloud
 
 ### Cluster setup
@@ -143,6 +116,12 @@
     --max-nodes 4 --region us-central1-f --enable-master-authorized-networks \
     --cluster-version 1.16.13-gke.400 \
     --master-authorized-networks [IP]/32
+    
+### Update authorized master network
+
+    gcloud container clusters update example-cluster \
+    --enable-master-authorized-networks \
+    --master-authorized-networks [IP/32 comma separated]
 
 ### List node pool in cluster
 
@@ -172,3 +151,30 @@
     gcloud auth configure-docker
     docker tag 016bc1f182f5  us.gcr.io/kuber-276115/docker-jenkin-slave:1.0
     docker push us.gcr.io/kuber-276115/docker-jenkin-slave
+
+# helm
+
+### add helm repo
+
+    helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+### Get helm charts
+
+    helm ls --all
+
+### Deploy helm chart
+
+### Update helm chart
+
+    helm upgrade hello-world ./hello-world
+    helm rollback hello-world 1
+    helm delete --purge hello-world
+    helm package ./hello-world
+
+### install nginx-ingress
+
+    hell install nginx-ingress stable/nginx-ingress
+
+### get yaml output for helm deployment
+
+    helm template nginx-ingress stable/nginx-ingress --set rbac.create=true --set controller.publishService.enabled=true
